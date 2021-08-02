@@ -15,10 +15,18 @@ class ToyServerNats(private val toyService: ToyService) {
 
     @Subject("channel.toy")
     fun listen(toyEvent: ToyEvent){
-        logger.info("Connection Sucess and CREATED - Infrastructure")
+        logger.info("Connection Sucess - Infrastructure")
 
-        if(toyEvent.takeAction == REGISTER){
-            toyService.create(ToyConverter.toyEventToToy(toyEvent))
+        when (toyEvent.takeAction) {
+            REGISTER -> {
+                toyService.create(ToyConverter.toyEventToToy(toyEvent))
+            }
+            UPDATE -> {
+                toyService.update(ToyConverter.toyEventToToy(toyEvent))
+            }
+            DELETE -> {
+                toyService.delete(ToyConverter.toyEventToToy(toyEvent))
+            }
         }
 
     }

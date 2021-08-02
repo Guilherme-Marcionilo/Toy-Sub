@@ -11,5 +11,8 @@ class ToyServiceImpl(private val toyDatabaseService: ToyDatabaseService): ToySer
 
     override fun create(dto: Toy) = toyDatabaseService.create(ToyConverter.toyToToyEntity(dto))
 
+    override fun update(dto: Toy) = toyDatabaseService.update(ToyConverter.toyToToyEntity(dto))
+
+    override fun delete(dto: Toy) = toyDatabaseService.delete(ToyConverter.toyToToyEntity(dto))
 
 }

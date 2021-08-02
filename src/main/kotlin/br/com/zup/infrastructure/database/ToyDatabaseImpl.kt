@@ -21,4 +21,25 @@ class ToyDatabaseImpl(private val cqlSession: CqlSession) : ToyDatabaseService {
             )
         )
     }
+
+    override fun update(toy: ToyEntity) {
+        cqlSession.execute(
+            SimpleStatement.newInstance(
+                "UPDATE toy SET name = ?, price = ?, description = ? WHERE id = ?",
+                toy.name,
+                toy.price,
+                toy.description,
+                toy.id,
+            )
+        )
+    }
+
+    override fun delete(toy: ToyEntity) {
+        cqlSession.execute(
+            SimpleStatement.newInstance(
+                "DELETE from toy WHERE id = ?",
+                toy.id,
+            )
+        )
+    }
 }

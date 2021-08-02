@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory
 @NatsListener
 class ToyServerNats(private val toyService: ToyService) {
 
-    private val logger = LoggerFactory.getLogger(this::class.java)
+    private val LOG = LoggerFactory.getLogger(this::class.java)
 
     @Subject("channel.toy")
     fun listen(toyEvent: ToyEvent){
-        logger.info("Connection Sucess - Infrastructure")
+        LOG.info("Connection Sucess - Infrastructure | Running Operation")
 
         when (toyEvent.takeAction) {
             REGISTER -> {

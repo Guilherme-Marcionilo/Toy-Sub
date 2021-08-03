@@ -15,7 +15,7 @@ class ToyDatabaseImplTest : AnnotationSpec() {
     private val cqlSession = mockk<CqlSession>(relaxed = true)
     private val toyDatabaseImpl = ToyDatabaseImpl(cqlSession)
     private lateinit var toyEntity: ToyEntity
- 
+
     @BeforeEach
     fun setUp() {
         toyEntity = ToyEntity(UUID.randomUUID(), "Test", BigDecimal.ONE, "Desc")
